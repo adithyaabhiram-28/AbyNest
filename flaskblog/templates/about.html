@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section class="content-section about-section">
+        <p class="about-kicker">About AbyNest</p>
+        <h1>A simple space to write, share, and revisit ideas.</h1>
+        <p class="about-lead">
+            AbyNest is a lightweight blogging app built for personal posts, quick updates,
+            and clean reading. It keeps the focus on the writer, the post, and the people
+            behind each story.
+        </p>
+
+        <div class="about-grid">
+            <div>
+                <h2>What You Can Do</h2>
+                <ul class="about-list">
+                    <li>Create an account and manage your profile.</li>
+                    <li>Publish posts with a title and full content.</li>
+                    <li>Edit or delete your own posts when needed.</li>
+                    <li>Browse posts by author and date.</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Built With</h2>
+                <ul class="about-list">
+                    <li>Flask for the web application.</li>
+                    <li>PostgreSQL for storing users and posts.</li>
+                    <li>Flask-Login for account sessions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="about-note">
+            This project is also a practical learning app: it brings together routing,
+            templates, authentication, image uploads, email reset flow, and database work
+            in one complete Flask project.
+        </p>
+    </section>
+{% endblock content %}

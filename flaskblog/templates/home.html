@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% for post in posts.items %}
+            <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image) }}" alt="{{ url_for('static', filename='profile_pics/default.jpg') }}">
+            <div class="media-body">
+                <div class="article-metadata">
+                <a class="mr-2" href="{{ url_for('users.user_posts', uname=post.author.uname) }}">{{ post.author.uname }}</a>
+                <small class="text-muted">{{ post.date.strftime('%d-%m-%Y') }}</small>
+                </div>
+                <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
+            </div>
+            </article>
+        {% endfor %}
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+            {% if page_num %}
+                {% if posts.page == page_num %}
+                    <a href="{{ url_for('main.home', page=page_num ) }}" class="btn btn-info mb-4">{{ page_num }}</a>
+                {% else %}
+                    <a href="{{ url_for('main.home', page=page_num ) }}" class="btn btn-outline-info mb-4">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <section class="content-section welcome-section">
+            <p class="welcome-kicker">Welcome to AbyNest</p>
+            <img class="welcome-logo" src="{{ url_for('static', filename='brand/abynest-logo.png') }}" alt="Welcome to AbyNest">
+            <p class="welcome-lead">
+                Register or login to continue. Once you are in, you can create posts,
+                update your profile, and read the latest stories.
+            </p>
+            <div class="welcome-actions">
+                <a class="btn btn-info" href="{{ url_for('users.register') }}">Register</a>
+                <a class="btn btn-outline-info" href="{{ url_for('users.login') }}">Login</a>
+            </div>
+        </section>
+    {% endif %}
+{% endblock content %}

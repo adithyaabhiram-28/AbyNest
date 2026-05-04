@@ -7,24 +7,24 @@ from flask_mail import Message
 from flaskblog import mail
 
 
-def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    pic_name = random_hex + f_ext
-    pic_path = os.path.join(current_app.root_path, "static/profile_pics", pic_name)
+# def save_picture(form_picture):
+#     random_hex = secrets.token_hex(8)
+#     _, f_ext = os.path.splitext(form_picture.filename)
+#     pic_name = random_hex + f_ext
+#     pic_path = os.path.join(current_app.root_path, "static/profile_pics", pic_name)
 
-    output_size = (125, 125)
-    i = Image.open(form_picture)
-    i.thumbnail(output_size)
-    i.save(pic_path)
+#     output_size = (125, 125)
+#     i = Image.open(form_picture)
+#     i.thumbnail(output_size)
+#     i.save(pic_path)
 
-    return pic_name
+#     return pic_name
 
-def delete_picture(pic_name):
-    if pic_name and pic_name != "default.jpg":
-        pic_path = os.path.join(current_app.root_path, "static/profile_pics", pic_name)
-        if os.path.exists(pic_path):
-            os.remove(pic_path)
+# def delete_picture(pic_name):
+#     if pic_name and pic_name != "default.jpg":
+#         pic_path = os.path.join(current_app.root_path, "static/profile_pics", pic_name)
+#         if os.path.exists(pic_path):
+#             os.remove(pic_path)
 
 def send_email(user):    
     if not current_app.config.get('MAIL_USERNAME') or not current_app.config.get('MAIL_PASSWORD'):

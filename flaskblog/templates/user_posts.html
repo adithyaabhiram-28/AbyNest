@@ -3,7 +3,8 @@
     <h1 class="mb-3">{{ user.uname }}'s Posts</h1>
     {% for post in posts.items %}
         <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image) }}" alt="{{ url_for('static', filename='profile_pics/default.jpg') }}">
+            <!-- <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image) }}" alt="{{ url_for('static', filename='profile_pics/default.jpg') }}"> -->
+            <img src="{{ url_for('static', filename='profile_pics/default.jpg') }}" alt="Profile picture">
         <div class="media-body">
             <div class="article-metadata">
             <a class="mr-2" href="{{ url_for('users.user_posts', uname=post.author.uname) }}">{{ post.author.uname }}</a>

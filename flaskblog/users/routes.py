@@ -51,18 +51,24 @@ def account():
         current_user.uname = form.uname.data
         current_user.email = form.email.data
         if form.picture.data:
-            old_picture = current_user.image
-            pic_file = save_picture(form.picture.data)
-            current_user.image = pic_file
-            delete_picture(old_picture)
+            # old_picture = current_user.image
+            # pic_file = save_picture(form.picture.data)
+            # current_user.image = pic_file
+            # delete_picture(old_picture)
+            if current_user.image_public_id:
+                delete_picture(current_user.image_public_id)
+            upload_data = save_picture(form.picture.data)
+            current_user.image_url = upload_data["url"]
+            current_user.image_public_id = upload_data["public_id"]
         db.session.commit()
         flash("Account updated successfully!", "success")
         return redirect(url_for("users.account"))
     elif request.method == "GET":
         form.uname.data = current_user.uname
         form.email.data = current_user.email
-    image = url_for("static", filename="profile_pics/"+current_user.image)
+    # image = url_for("static", filename="profile_pics/"+current_user.image)
     # image = url_for("static", filename="profile_pics/default.jpg")
+    image = current_user.image_url
     return render_template("account.html", title="Account", image=image, form=form)
 
 @users.route("/user/<string:uname>")

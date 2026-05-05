@@ -13,7 +13,9 @@ class User(db.Model, UserMixin):
     uname = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-    image = db.Column(db.String(60), default='default.jpg')
+    image_url = db.Column(db.String(500), nullable=False, default="https://res.cloudinary.com/ds74jszcl/image/upload/v1777964984/default_vlnm6j.jpg")
+    image_public_id = db.Column(db.String(200), nullable=True)
+    # image = db.Column(db.String(60), default='default.jpg')
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def get_token(self):
@@ -30,9 +32,10 @@ class User(db.Model, UserMixin):
         return User.query.get(user_id)
 
     def __repr__(self):
-        return f"User('{self.uname}',{self.email}','{self.image}')"
+        # return f"User('{self.uname}',{self.email}','{self.image}')"
+        return f"User('{self.uname}', '{self.email}', '{self.image_url}')"
 
-class Post(db.Model):
+class Post(db.Model):   
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=lambda: 

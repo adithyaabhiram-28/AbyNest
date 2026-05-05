@@ -8,3 +8,4 @@ Pillow
 email-validator
 gunicorn
 psycopg2-binary
+cloudinary

@@ -85,4 +85,4 @@ def send_email(user):
 # If you did not make this request then simply ignore this email and no changes will be made.
 # ''' 
     # mail.send(msg)
-    flash("Password reset feature is temporarily disabled.", "info")
+    flash("Password reset feature is temporarily disabled.", "warning")

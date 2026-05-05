@@ -2,7 +2,7 @@ import cloudinary.uploader
 import os
 import secrets
 from PIL import Image
-from flask import url_for, current_app, flash
+from flask import url_for, current_app
 from flask_mail import Message
 from flaskblog import mail
 
@@ -85,4 +85,4 @@ def send_email(user):
 If you did not make this request then simply ignore this email and no changes will be made.
 ''' 
     # mail.send(msg)
-    flash("Password reset feature is temporarily disabled.", "info")
+    print("Password reset feature disabled")

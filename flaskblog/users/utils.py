@@ -84,4 +84,5 @@ def send_email(user):
 {url_for("users.reset_token", token=token, _external=True)}
 If you did not make this request then simply ignore this email and no changes will be made.
 ''' 
-    mail.send(msg)
+    # mail.send(msg)
+    flash("Password reset feature is temporarily disabled.", "info")

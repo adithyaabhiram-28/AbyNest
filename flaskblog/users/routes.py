@@ -93,7 +93,7 @@ def reset_request():
         except SMTPAuthenticationError:
             flash("Email login failed. Check EMAIL_USER and use a Google App Password for EMAIL_PASS.", "danger")
             return redirect(url_for("users.reset_request"))
-        flash("Email has been sent, reset your password.", "info")
+        # flash("Email has been sent, reset your password.", "info")
         return redirect(url_for("users.login"))
     return render_template("reset_request.html", title="Reset Password", form=form)
 

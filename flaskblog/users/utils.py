@@ -75,14 +75,14 @@ def delete_picture(public_id):
             pass
 
 def send_email(user):    
-    if not current_app.config.get('MAIL_USERNAME') or not current_app.config.get('MAIL_PASSWORD'):
-        raise RuntimeError('EMAIL_USER and EMAIL_PASS environment variables must be set to send reset emails.')
+    # if not current_app.config.get('MAIL_USERNAME') or not current_app.config.get('MAIL_PASSWORD'):
+    #     raise RuntimeError('EMAIL_USER and EMAIL_PASS environment variables must be set to send reset emails.')
 
-    token = user.get_token()
-    msg = Message("Reset Password Request", sender=current_app.config['MAIL_USERNAME'], recipients=[user.email])
-    msg.body = f'''To reset your password, click the following link:
-{url_for("users.reset_token", token=token, _external=True)}
-If you did not make this request then simply ignore this email and no changes will be made.
-''' 
+#     token = user.get_token()
+#     msg = Message("Reset Password Request", sender=current_app.config['MAIL_USERNAME'], recipients=[user.email])
+#     msg.body = f'''To reset your password, click the following link:
+# {url_for("users.reset_token", token=token, _external=True)}
+# If you did not make this request then simply ignore this email and no changes will be made.
+# ''' 
     # mail.send(msg)
-    print("Password reset feature disabled")
+    flash("Password reset feature is temporarily disabled.", "info")
